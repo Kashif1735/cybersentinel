@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSentinel - Unified Cybersecurity Intelligence System</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a252f;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .tech-stack {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .tech-stack .section-title h2 {
+            color: white;
+        }
+        
+        .tech-stack .section-title h2::after {
+            background-color: var(--accent);
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .tech-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .tech-item:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .tech-item i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .tech-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .team {
+            text-align: center;
+        }
+        
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .member {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .member-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            border: 5px solid var(--secondary);
+        }
+        
+        .member h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .member p {
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                display: block;
+                width: 80%;
+                margin: 0 auto 1rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Cyber<span>Sentinel</span></a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#tech">Technology</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Unified Cybersecurity Intelligence System</h1>
+            <p>An all-in-one cybersecurity platform designed to detect, defend, and protect users against evolving digital threats with a comprehensive yet user-friendly security solution.</p>
+            <a href="#features" class="btn">Explore Features</a>
+            <a href="#contact" class="btn btn-outline">Get Started</a>
+        </div>
+    </section>
+
+    <section id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>System Features</h2>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Secure Login with 2FA</h3>
+                    <p>User authentication through email-based OTP verification with brute-force protection and session management. Admin-level access for advanced tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Encrypted Password Vault</h3>
+                    <p>Store credentials securely with AES encryption, generate strong passwords, and manage them with full CRUD functionality protected by master key encryption.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Phishing Detection</h3>
+                    <p>Analyze URLs in real-time using heuristic rules and machine learning to identify phishing attempts with detailed threat reports and safe browsing tips.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>File Integrity Checker</h3>
+                    <p>Monitor selected files or directories for unauthorized changes and receive immediate notifications of any tampering attempts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Network Monitoring</h3>
+                    <p>Detect suspicious network activity using advanced packet sniffing techniques to identify potential intrusions or anomalies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-expand"></i>
+                    </div>
+                    <h3>Modular Architecture</h3>
+                    <p>Flexible system design allows for easy addition of new security modules and features as threats evolve and user needs change.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech" class="tech-stack">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technology Stack</h2>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-react"></i>
+                    <h3>Frontend</h3>
+                    <p>React.js / HTML5 / CSS3 / Tailwind CSS</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-python"></i>
+                    <h3>Backend</h3>
+                    <p>Python (Flask/FastAPI)</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    <h3>Database</h3>
+                    <p>SQLite / MongoDB</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-shield-virus"></i>
+                    <h3>Security</h3>
+                    <p>Scapy, hashlib, cryptography</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-robot"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Sklearn for phishing detection</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-server"></i>
+                    <h3>Deployment</h3>
+                    <p>Docker (optional)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <div class="team-members">
+                <div class="member">
+                    <img src="https://iili.io/3j4nLwN.jpg" alt="Kashif" class="member-img">
+                    <h3>Kashif</h3>
+                    <p>Frontend Developer</p>
+                    <p>3VY22CS033</p>
+                </div>
+                <div class="member">
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Aditya" class="member-img">
+                    <h3>Aditya</h3>
+                    <p>Team Lead</p>
+                    <p>3VY22CS005</p>
+                </div>
+                <div class="member">
+                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="Ashish" class="member-img">
+                    <h3>Ashish</h3>
+                    <p>Backend Developer</p>
+                    <p>3VY22CS013</p>
+                </div>
+                <div class="member">
+                    <img src="https://randomuser.me/api/portraits/men/3.jpg" alt="Ganesh" class="member-img">
+                    <h3>Ganesh</h3>
+                    <p>Security Specialist</p>
+                    <p>3VY22CS024</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+            </div>
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <p>Interested in learning more about CyberSentinel or want to collaborate on this project? Reach out to us!</p>
+                <form id="contactForm" style="margin-top: 2rem;">
+                    <div style="margin-bottom: 1rem;">
+                        <input type="text" placeholder="Your Name" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: 1px solid #ddd;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <input type="email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: 1px solid #ddd;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <textarea placeholder="Your Message" rows="5" style="width: 100%; padding: 0.8rem; border-radius: 5px; border: 1px solid #ddd;"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <a href="#" class="logo">Cyber<span>Sentinel</span></a>
+            <p style="margin: 1rem 0;">Unified Cybersecurity Intelligence System</p>
+            <ul class="footer-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#tech">Technology</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="copyright">
+                <p>&copy; 2023 CyberSentinel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .tech-item, .member').forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>
